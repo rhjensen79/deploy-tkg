@@ -22,18 +22,6 @@ jobs:
         run: |
           sudo mv kubectl* /usr/bin/
           sudo chmod +x /usr/bin/kubectl*
-      # check if there are yaml files in the directory, before running kubectl to avoid error
-      - name: Check file existence
-        id: check_files_apply
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "apply/*.yaml"
-      # check if there are yaml files in the directory, before running kubectl to avoid error
-      - name: Check file existence
-        id: check_files_delete
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "delete/*.yaml"
       # Install and login to Tailscale network
       - name: Tailscale
         uses: tailscale/github-action@main
@@ -46,13 +34,13 @@ jobs:
         run: |
           kubectl vsphere login --server=${{ secrets.IPADRESS }} --insecure-skip-tls-verify -u=${{ secrets.KUBECTL_VSPHERE_USER }}
           kubectl config use-context ${{ secrets.KUBECTL_CONTEXT }}
-      # Apply the yaml files if they exist
+      # Apply the yaml files
       - name: apply
-        if: steps.check_files_apply.outputs.files_exists == 'true'
+        continue-on-error: true
         run: kubectl apply -f apply/.
-      # Delete the yaml files if they exist
+      # Delete the yaml files
       - name: delete
-        if: steps.check_files_delete.outputs.files_exists == 'true'
+        continue-on-error: true
         run: kubectl delete -f delete/.
       # Logout of Tailscale network and remove agent
       - name: Delete Tailscale agent
