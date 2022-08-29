@@ -1,0 +1,18 @@
+name: deploy_cluster
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy_cluster:
+    runs_on: ubuntu-latest
+    steps:
+      # Get the repositery's code
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Tailscale
+        uses: tailscale/github-action@v1
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
