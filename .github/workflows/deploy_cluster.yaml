@@ -13,18 +13,16 @@ jobs:
       # Get the repositery's code
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Tailscale
-        uses: tailscale/github-action@main
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
       - name: Install cli tools
         run: |
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
-          echo ${{ secrets.KUBECONFIG }} > ~/.kube/config
-          cat ~/.kube/config
-
+          unzip plugins/vsphere-plugin.zip -d ~/.local/bin
+      - name: Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
       - name: Delete Tailscale agent
         run: sudo tailscale logout
