@@ -23,6 +23,8 @@ jobs:
           chmod +x kubectl
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
+          echo ${{ secrets.KUBECONFIG }} > ~/.kube/config
+          cat ~/.kube/config
 
       - name: Delete Tailscale agent
         run: sudo tailscale logout
