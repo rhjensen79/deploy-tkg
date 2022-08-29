@@ -1,4 +1,4 @@
-name: deploy_cluster
+name: apply_cluster
 
 on:
   workflow_dispatch:
@@ -6,8 +6,11 @@ on:
     branches:
       - "master"
 
+    paths:
+      - "apply/**"
+
 jobs:
-  deploy_cluster:
+  apply_cluster:
     runs-on: ubuntu-latest
     steps:
       # Get the repositery's code
