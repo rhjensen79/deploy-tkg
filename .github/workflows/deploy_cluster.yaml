@@ -25,4 +25,4 @@ jobs:
           mv ./kubectl ~/.local/bin/kubectl
 
       - name: Delete Tailscale agent
-        run: tailscale logout
+        run: sudo tailscale logout
