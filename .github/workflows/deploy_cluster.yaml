@@ -20,8 +20,12 @@ jobs:
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
           unzip plugins/vsphere-plugin.zip -d ~/.local/bin
-      - name: test
-        run: kubectl --help
+      - name: login
+        env:
+          KUBECTL_VSPHERE_PASSWORD: ${{ secrets.KUBECTL_VSPHERE_PASSWORD }}
+        run: |
+          kubectl vsphere login --server=172.19.24.1 --insecure-skip-tls-verify -u=${{ secrets.KUBECTL_VSPHERE_USER }}
+          kubectl config use-context ${{ secrets.KUBECTL_CONTEXT }}
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
