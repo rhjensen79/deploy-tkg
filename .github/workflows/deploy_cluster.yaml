@@ -27,5 +27,6 @@ jobs:
         run: |
           kubectl vsphere login --server=172.19.24.1 --insecure-skip-tls-verify -u=${{ secrets.KUBECTL_VSPHERE_USER }}
           kubectl config use-context ${{ secrets.KUBECTL_CONTEXT }}
+          kubectl apply -f apply/.
       - name: Delete Tailscale agent
         run: sudo tailscale logout
