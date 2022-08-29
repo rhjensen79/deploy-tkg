@@ -1,4 +1,4 @@
-name: apply_cluster
+name: delete_cluster
 
 on:
   workflow_dispatch:
