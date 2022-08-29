@@ -15,12 +15,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install cli tools
         run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          chmod +x kubectl
-          mkdir -p ~/.local/bin
-          mv ./kubectl ~/.local/bin/kubectl
-          unzip plugins/vsphere-plugin.zip -d ~/.local/bin
-          ls ~/.local/bin
+          unzip plugins/vsphere-plugin.zip 
+          mv bin/* ../
       - name: login
         env:
           KUBECTL_VSPHERE_PASSWORD: ${{ secrets.KUBECTL_VSPHERE_PASSWORD }}
