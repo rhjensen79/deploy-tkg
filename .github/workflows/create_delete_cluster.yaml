@@ -41,7 +41,7 @@ jobs:
       # Delete the yaml files
       - name: delete
         continue-on-error: true
-        run: kubectl delete -f delete/.
+        run: kubectl delete -f delete/. --wait=false
       # Logout of Tailscale network and remove agent
       - name: Delete Tailscale agent
         run: sudo tailscale logout
