@@ -1,6 +1,7 @@
 name: deploy_cluster
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "main"
@@ -16,3 +17,12 @@ jobs:
         uses: tailscale/github-action@v1
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+      - name: Install cli tools
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          mkdir -p ~/.local/bin
+          mv ./kubectl ~/.local/bin/kubectl
+
+      - name: Delete Tailscale agent
+        run: tailscale logout
