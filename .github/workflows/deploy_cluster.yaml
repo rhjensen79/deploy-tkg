@@ -20,6 +20,8 @@ jobs:
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
           unzip plugins/vsphere-plugin.zip -d ~/.local/bin
+      - name: test
+        run: kubectl --help
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
