@@ -20,6 +20,7 @@ jobs:
           mkdir -p ~/.local/bin
           mv ./kubectl ~/.local/bin/kubectl
           unzip plugins/vsphere-plugin.zip -d ~/.local/bin
+          ls ~/.local/bin
       - name: login
         env:
           KUBECTL_VSPHERE_PASSWORD: ${{ secrets.KUBECTL_VSPHERE_PASSWORD }}
