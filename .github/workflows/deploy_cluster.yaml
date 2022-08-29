@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install cli tools
         run: |
-          unzip plugins/vsphere-plugin.zip 
+          unzip vsphere-plugin.zip 
           mv bin/ ..
           ls
           chmod +x kubectl*
