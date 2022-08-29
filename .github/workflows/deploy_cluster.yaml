@@ -16,7 +16,7 @@ jobs:
       - name: Install cli tools
         run: |
           unzip plugins/vsphere-plugin.zip 
-          mv bin/* ../
+          mv bin/ ..
           ls
           chmod +x kubectl*
       - name: login
