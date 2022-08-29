@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "main"
+      - "master"
 
 jobs:
   deploy_cluster:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       # Get the repositery's code
       - name: Checkout
