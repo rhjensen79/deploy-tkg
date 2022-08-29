@@ -17,6 +17,8 @@ jobs:
         run: |
           unzip plugins/vsphere-plugin.zip 
           mv bin/* ../
+          ls
+          chmod +x kubectl*
       - name: login
         env:
           KUBECTL_VSPHERE_PASSWORD: ${{ secrets.KUBECTL_VSPHERE_PASSWORD }}
