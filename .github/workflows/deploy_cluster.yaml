@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install cli tools
         run: |
-          chmod +x kubectl*
+          mv kubectl* /usr/bin/
+          chmod +x /usr/bin/kubectl*
       - name: login
         env:
           KUBECTL_VSPHERE_PASSWORD: ${{ secrets.KUBECTL_VSPHERE_PASSWORD }}
