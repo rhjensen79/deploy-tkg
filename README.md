@@ -6,6 +6,7 @@ Use a own risk.
 ## Add Cluster
 
 To create, add "TanzuKubernetesCluster" yaml files in the apply folder and commit.
+You can copy the template found in the templates directory.
 
 ## Change Cluster
 

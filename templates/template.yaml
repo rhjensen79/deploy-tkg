@@ -1,7 +1,7 @@
 apiVersion: run.tanzu.vmware.com/v1alpha2
 kind: TanzuKubernetesCluster
 metadata:
-  name: vmlab-test
+  name: k8s-template
 spec:
   topology:
     controlPlane:
@@ -12,7 +12,7 @@ spec:
         - name: etcd
           mountPath: /var/lib/etcd
           capacity:
-            storage: 5Gi
+            storage: 1Gi
       tkr:
         reference:
           name: v1.21.6---vmware.1-tkg.1.b3d708a
@@ -25,7 +25,7 @@ spec:
           - name: containerd
             mountPath: /var/lib/containerd
             capacity:
-              storage: 200Gi
+              storage: 10Gi
         tkr:
           reference:
             name: v1.21.6---vmware.1-tkg.1.b3d708a
